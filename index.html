@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="magicNotesStyle.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Acme&display=swap"
+      rel="stylesheet"
+    />
+    <title>Notes App</title>
+  </head>
+
+  <body>
+    <div class="horMenu">
+      <ul>
+        <li style="font-size: 20px; margin-left: 0%">Magic Notes</li>
+        <li>Home</li>
+        <li style="float: right">Search</li>
+        <li style="float: right">
+          <form
+            action="#"
+            id="searchBox"
+            class="searchBox"
+            onfocusin="onFocusFunction()"
+            onfocusout="searchStr()"
+          >
+            <input type="text" id="searchInput" placeholder="search notes..." />
+            <button
+              type="reset"
+              id="xbtn"
+              class="xButton"
+              onclick="deleteSearchStr()"
+              style="display: none"
+            >
+              X
+            </button>
+          </form>
+        </li>
+      </ul>
+    </div>
+
+    <h2 id="mainHeading">Welcome to Magic Notes</h2>
+
+    <textarea id="message"></textarea>
+
+    <button type="button" class="addNoteBtn" onclick="addNote()">
+      Add Note
+    </button>
+
+    <h1 id="yourNotes">Your Notes</h1>
+
+    <script src="magicNotesScript.js"></script>
+  </body>
+</html>
