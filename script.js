@@ -29,7 +29,11 @@ const notesObject = {
     let note = document.getElementById('addText').value;
     let noteObj = localStorage.getItem('notes');
     let noteArr = [];
-    if (noteObj == null) {
+
+    if (note == '') {
+      console.log('in if section')
+      return
+    } else if (noteObj == null) {
       noteArr = []
     } else {
       noteArr = JSON.parse(noteObj)
@@ -79,4 +83,4 @@ function showNote() {
   }
 }
 
-  notesObject.showNotes()
+notesObject.showNotes()
