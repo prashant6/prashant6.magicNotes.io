@@ -63,15 +63,13 @@ const notesObject = {
 function showNote() {
   let search = document.getElementById('searchKeyword')
   let searchWord = search.value.toLowerCase()
-  console.log(searchWord)
   let noteCard = Array.from(document.getElementsByClassName('noteCard'))
 
   if (noteCard.length == 0) {
 
   } else {
     noteCard.forEach(function (element) {
-      console.log(element.innerHTML)
-      let searchStr = element.getElementsByTagName('p')[0].innerText
+      let searchStr = element.getElementsByTagName('p')[0].innerText.toLowerCase()
 
       if (searchStr.includes(searchWord)) {
         element.style.display = 'block'
