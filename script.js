@@ -1,12 +1,18 @@
 const notesObject = {
 
+
+  // function to show all the notes in the app
   showNotes: function () {
     let notes = localStorage.getItem('notes')
     let notesArr = JSON.parse(notes)
 
-    if (notes == null) {
+
+    if (notes == null || notesArr.length == 0) {
+
+      document.getElementById('notes').innerText = 'You may want to add some notes'
 
     } else {
+
       let noteEle = document.getElementById('notes')
       let html = ''
       notesArr = JSON.parse(notes)
@@ -14,8 +20,8 @@ const notesObject = {
       notesArr.forEach(function (element, index) {
         html += `<div class="noteCard my-2 mx-2 card" style="width: 18rem;">
         <div class="card-body">
-            <h5 class="card-title">Note ${index + 1}</h5>
-            <p class="card-text"> ${element}</p>
+            <h5 class="card-title">${element.noteTitle}</h5>
+            <p class="card-text"> ${element.noteMessage}</p>
             <button id="${index}"onclick="notesObject.deleteNotes(this.id)" class="btn btn-primary">Delete Note</button>
         </div>
     </div>`
@@ -25,25 +31,40 @@ const notesObject = {
 
   },
 
+
+  // function to add notes in the app
   addNotes: function () {
     let note = document.getElementById('addText').value;
     let noteObj = localStorage.getItem('notes');
     let noteArr = [];
+    let title = document.getElementById('addTitle').value
 
-    if (note == '') {
-      console.log('in if section')
+    if (note == '' && title == '') {
       return
     } else if (noteObj == null) {
       noteArr = []
     } else {
       noteArr = JSON.parse(noteObj)
     }
-    noteArr.unshift(note)
+
+    if(title == '') {
+      title = "Note " + (noteArr.length + 1)
+    }
+
+    const singleNoteObject = {
+      noteTitle: title,
+      noteMessage: note
+    }
+
+    noteArr.unshift(singleNoteObject)
     localStorage.setItem('notes', JSON.stringify(noteArr))
     this.showNotes()
     document.getElementById('addText').value = '';
+    document.getElementById('addTitle').value = '';
   },
 
+
+  // function to delete notes in the app
   deleteNotes: function (index) {
     let noteObj = localStorage.getItem('notes')
     let btn = document.getElementById(index)
@@ -60,6 +81,7 @@ const notesObject = {
   },
 }
 
+// function to show the searched notes
 function showNote() {
   let search = document.getElementById('searchKeyword')
   let searchWord = search.value.toLowerCase()
